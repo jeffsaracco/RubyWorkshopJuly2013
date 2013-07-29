@@ -1,7 +1,11 @@
 class LitBot
   def initialize(source_text_file)
     @source_text = File.new(source_text_file).read
+    build_table_of_words_and_probabilities
+    "lit bot created"
+  end
 
+  def build_table_of_words_and_probabilities
     @words = @source_text.split(" ")
     @words_and_probs = {}
     @words.each_with_index do |word, index|
@@ -9,7 +13,6 @@ class LitBot
       following_words << @words[index + 1]
       @words_and_probs[word] = following_words
     end
-    source_text_file
   end
 
   def random_sentence
